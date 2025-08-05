@@ -29,7 +29,6 @@ namespace SupplyManagementApp.Controllers
                         CompanyName = reader["CompanyName"] != DBNull.Value ? reader.GetString("CompanyName") : "",
                         Email = reader["Email"] != DBNull.Value ? reader.GetString("Email") : "",
                         PhoneNumber = reader["PhoneNumber"] != DBNull.Value ? reader.GetString("PhoneNumber") : "",
-                        LogoUrl = reader["LogoUrl"] != DBNull.Value ? reader.GetString("LogoUrl") : "",
                         IsApproved = reader["IsApproved"] != DBNull.Value && reader.GetBoolean("IsApproved")
                     });
 
@@ -61,13 +60,12 @@ namespace SupplyManagementApp.Controllers
                 try
                 {
                     conn.Open();
-                    string query = @"INSERT INTO Companies (CompanyName, Email, PhoneNumber, LogoUrl)
-                                     VALUES (@CompanyName, @Email, @PhoneNumber, @LogoUrl)";
+                    string query = @"INSERT INTO Companies (CompanyName, Email, PhoneNumber)
+                                     VALUES (@CompanyName, @Email, @PhoneNumber)";
                     MySqlCommand cmd = new MySqlCommand(query, conn);
                     cmd.Parameters.AddWithValue("@CompanyName", company.CompanyName);
                     cmd.Parameters.AddWithValue("@Email", company.Email);
                     cmd.Parameters.AddWithValue("@PhoneNumber", company.PhoneNumber);
-                    cmd.Parameters.AddWithValue("@LogoUrl", company.LogoUrl);
 
                     cmd.ExecuteNonQuery();
                     return RedirectToAction("Index");

@@ -11,7 +11,6 @@ namespace SupplyManagement.Models
         public string CompanyName { get; set; }
         public string Email { get; set; }
         public string PhoneNumber { get; set; }
-        public string LogoUrl { get; set; }
         public bool IsApproved { get; set; }
     }
 }
